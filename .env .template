@@ -1,0 +1,5 @@
+DB_PASSWORD=MySecr3t
+DB_NAME=TestloDB
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
