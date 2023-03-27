@@ -1,7 +1,7 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProductImage } from "./product-image.entity";
 
-@Entity()
+@Entity({ name: 'products' })
 export class Product {
 
     @PrimaryGeneratedColumn('uuid')
@@ -53,7 +53,10 @@ export class Product {
     @OneToMany(
         ()=> ProductImage,
         (productImage) => productImage.product,
-        { cascade:true }
+        { 
+            cascade: true,
+            eager: true //TODO: MUESTRA LAS RELACIONES EN CADA CONSULTA
+        }
     )
     images?:ProductImage[]
 
@@ -65,16 +68,20 @@ export class Product {
 
         this.slug = this.slug
             .toLowerCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
+            .split(' ')
+            .join('_')
+            .split("'")
+            .join('')
     }
 
     @BeforeUpdate()
     checkSlugUpdate(){
         this.slug = this.slug
         .toLowerCase()
-        .replaceAll(' ','_')
-        .replaceAll("'",'')
+        .split(' ')
+        .join('_')
+        .split("'")
+        .join('')
     }
 
 }
