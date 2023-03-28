@@ -1,5 +1,10 @@
 DB_PASSWORD=MySecr3t
-DB_NAME=TestloDB
+DB_NAME=postgres
 DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=postgres
+
+HOST_API=http://localhost:3000/api
+PORT=3000
+
+JWT_SECRET=S3cr3tJwt
